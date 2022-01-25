@@ -26,7 +26,10 @@ class CustomerController {
     }
 
     @GetMapping
-    fun readAll(): List<Customer> {
+    fun readAll(@RequestParam name: String?): List<Customer> {
+        name?.let {
+            return customers.filter { it.name.contains(name, true) }
+        }
         return customers
     }
 
@@ -44,5 +47,10 @@ class CustomerController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(@PathVariable id: String) {
+        customers.removeIf { it.id == id }
+    }
 
 }
