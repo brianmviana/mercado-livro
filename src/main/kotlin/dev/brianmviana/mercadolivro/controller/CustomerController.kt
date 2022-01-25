@@ -1,6 +1,7 @@
 package dev.brianmviana.mercadolivro.controller
 
 import dev.brianmviana.mercadolivro.controller.resquest.PostCustomerRequest
+import dev.brianmviana.mercadolivro.controller.resquest.PutCustomerRequest
 import dev.brianmviana.mercadolivro.model.Customer
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -10,16 +11,6 @@ import org.springframework.web.bind.annotation.*
 class CustomerController {
 
     val customers = mutableListOf<Customer>()
-
-    @GetMapping
-    fun getAll(): List<Customer> {
-        return customers
-    }
-
-    @GetMapping("/{id}")
-    fun getOne(@PathVariable id: String): Customer {
-        return customers.filter { it.id == id }.first()
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,5 +24,25 @@ class CustomerController {
         customers.add(Customer(id, customer.name, customer.email))
 
     }
+
+    @GetMapping
+    fun readAll(): List<Customer> {
+        return customers
+    }
+
+    @GetMapping("/{id}")
+    fun readOne(@PathVariable id: String): Customer {
+        return customers.filter { it.id == id }.first()
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun update(@PathVariable id: String, @RequestBody customer: PutCustomerRequest) {
+        customers.filter { it.id == id }.first().let {
+            it.name = customer.name
+            it.email = customer.email
+        }
+    }
+
 
 }
