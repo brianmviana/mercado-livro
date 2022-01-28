@@ -13,7 +13,7 @@ class CustomerService {
             1
         } else {
             customers.last().id!!.toInt() + 1
-        }.toString()
+        }
 
         customers.add(customer)
     }
@@ -25,18 +25,18 @@ class CustomerService {
         return customers
     }
 
-    fun readOne(id: String): Customer {
+    fun readOne(id: Int): Customer {
         return customers.filter { it.id == id }.first()
     }
 
-    fun update(id: String, customer: Customer) {
+    fun update(id: Int, customer: Customer) {
         customers.filter { it.id == customer.id }.first().let {
             it.name = customer.name
             it.email = customer.email
         }
     }
 
-    fun delete(id: String) {
+    fun delete(id: Int) {
         customers.removeIf { it.id == id }
     }
 
