@@ -29,7 +29,7 @@ class CustomerService {
         return customers.filter { it.id == id }.first()
     }
 
-    fun update(customer: Customer) {
+    fun update(id: String, customer: Customer) {
         customers.filter { it.id == customer.id }.first().let {
             it.name = customer.name
             it.email = customer.email
