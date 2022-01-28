@@ -14,4 +14,4 @@ data class Customer(
 
     @Column
     var email: String
-    )
+)
