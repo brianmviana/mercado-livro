@@ -1,7 +1,7 @@
 package dev.brianmviana.mercadolivro.controller
 
-import dev.brianmviana.mercadolivro.controller.resquest.PostCustomerRequest
-import dev.brianmviana.mercadolivro.controller.resquest.PutCustomerRequest
+import dev.brianmviana.mercadolivro.controller.request.PostCustomerRequest
+import dev.brianmviana.mercadolivro.controller.request.PutCustomerRequest
 import dev.brianmviana.mercadolivro.extension.toCustomer
 import dev.brianmviana.mercadolivro.model.Customer
 import dev.brianmviana.mercadolivro.service.CustomerService
